@@ -8,7 +8,8 @@ Es un protocolo estructurado de búsqueda para LLMs con capacidad de **búsqueda
 
 ## Qué encuentra
 
-Juegos de distribución limitada, producciones regionales, demos, shareware, PD, o títulos casi olvidados que no figuran en catálogos generales.
+Juegos de distribución limitada, producciones regionales, demos, shareware, prototipos o títulos casi olvidados que no figuran en catálogos generales.
+Prioriza rarezas arqueológicas por sobre títulos exitosos y bien conocidos.
 
 **Ejemplo:** *Cyber Force: Zniewolony Umysł* — un plataformas cinemático polaco para Amiga de mediados de los años 90, ausente en el [Cinematic Platformer Compendium](https://www.neogaf.com/threads/the-cinematic-platformer-compendium.989633/) y recuperado gracias a este protocolo.
 
@@ -16,13 +17,13 @@ Juegos de distribución limitada, producciones regionales, demos, shareware, PD,
 
 ## Cómo usarlo
 
-1. Copiá el contenido del archivo `LOSTWARE_V5.8-MINI.md`
-2. Pegalo en cualquier modelo de lenguaje con acceso a búsqueda web
-3. Modelos recomendados: GLM, Qwen, Kimi, DeepSeek, Doubao, ERNIE Bot
-4. Cuando el algoritmo lo solicite, ingresá los tres datos requeridos:
+1. Copiá el contenido del archivo `LOSTWARE_V6.2.md`
+2. Pegalo en cualquier modelo de lenguaje con acceso a búsqueda web.
+   Modelo recomendado: [DeepSeek](https://chat.deepseek.com) (con *Search* activado).
+3. Cuando lo solicite ingresá los tres datos requeridos:
    - Género
    - Región
-   - Período (por defecto: 1989–1999 si no se indica)
+   - Período (opcional, por defecto: 1989–1999)
 
 ---
 
