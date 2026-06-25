@@ -18,9 +18,9 @@ Prioriza rarezas arqueológicas por sobre títulos exitosos y bien conocidos.
 ## Cómo usarlo
 
 1. Copiá el contenido del archivo `LOSTWARE_V6.2.md`
-2. Pegalo en cualquier modelo de lenguaje con acceso a búsqueda web.
-   Modelo recomendado: [DeepSeek](https://chat.deepseek.com) (con *Search* activado).
-3. Cuando lo solicite ingresá los tres datos requeridos:
+2. Pegalo en cualquier modelo de lenguaje con razonamiento y búsqueda web.
+Modelo recomendado: [DeepSeek](https://chat.deepseek.com) (con *DeepThink* y *Search* activado).
+4. Cuando lo solicite ingresá los tres datos requeridos:
    - Género
    - Región
    - Período (opcional, por defecto: 1989–1999)
