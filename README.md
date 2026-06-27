@@ -88,6 +88,14 @@ Modelo utilizado: DeepSeek-R1. Fecha: junio 2026.
 
 ---
 
+## Variantes del modelo
+
+| Variante | Profile | Optimizacion | Uso |
+| :--- | :--- | :--- | :--- |
+| **V7.5-MINI** | **Flagship Model** | Alta velocidad & menor uso de tokens. | Escaneo masivo para hallazgos rapidos. |
+| **V7.5-S** | **Deep Research** | Validación de alta precisión y puntuación granular. Mayor consumo de tokens. | Reporte investigativo profundo. Experimental. |
+---
+
 ## Estructura del repositorio
 
 ```
@@ -98,22 +106,14 @@ lostware/
 ├── CHANGELOG.md
 │
 ├── prompts/
-│   ├── lostware-v5.7-mini.md        ← versión oficial actual
+│   ├── lostware-v7.5-mini.md        ← versión oficial actual
 │   └── archive/
-│       ├── lostware-v6.2.md
 │       ├── lostware-v5.8-mini.md
-│       └── lostware-v7.5-mini.md
+│       ├── lostware-v6.2.md
+│       └── lostware-v7.5-S.md       ← experimental
 │
 ├── tests/
 │   ├── results-v7.5-mini.html
-│   └── cases/
-│       ├── a1-jrpg-japan.md
-│       ├── a2-metroidvania-brazil.md
-│       ├── a3-strategy-poland.md
-│       ├── b1-adventure-spain.md
-│       ├── b2-shmup-korea.md
-│       └── b3-roguelike-international.md
-│
 └── docs/
     └── scoring-engine.md
 ```
