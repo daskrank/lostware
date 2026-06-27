@@ -1,8 +1,5 @@
 # LOSTWARE
-
-Algoritmo de arqueología digital para descubrir videojuegos perdidos, regionales o poco documentados.
-
-Es un protocolo estructurado de búsqueda para LLMs con capacidad de **búsqueda web** (web_search) o Agentes de IA. Su objetivo es localizar títulos que no aparecen en bases de datos masivas, mediante reglas explícitas para garantizar respaldo verificable y prevencion de alucinaciones.
+Prompt estructurado de búsqueda para LLMs con capacidad de **búsqueda web** (web_search) o Agentes de IA. Su objetivo es localizar títulos que no aparecen en bases de datos masivas, mediante reglas explícitas para garantizar respaldo verificable y prevencion de alucinaciones.
 
 ---
 
