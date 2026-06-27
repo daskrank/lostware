@@ -62,7 +62,7 @@ El modelo hará la búsqueda de forma autónoma y devolverá el listado de los h
 
 | Variante | Perfil | Optimización | Uso |
 | :--- | :--- | :--- | :--- |
-| **Core 1** | **Stable Release** | Equilibrio entre precisión, consistencia y consumo de tokens. | Uso general.
+| **CORE-1** | **Stable Release** | Equilibrio entre precisión, consistencia y consumo de tokens. | Uso general.
 | **Mini v5.7** | **Ligero / Experimental** | Mayor velocidad y menor uso de tokens, pero sacrifica precisión. | Escaneo masivo para hallazgos rápidos con impresiciones. |
 | **S (Deep Research)** | **Alta precisión** | Validación granular, mas lento y mayor consumo de tokens. Experimental. | Reportes investigativos profundos. |
 
@@ -95,13 +95,18 @@ lostware/
 ```
 ---
 
-## Limitaciones conocidas
+## Limitaciones conocidas / posibles mejoras
 
-- El modelo v5.7-mini puede violar la regla de pureza de género en ronda 2 de búsqueda, ampliando el término sin indicarlo. Los resultados de ronda 2 deben leerse con ese sesgo en mente. Ver [scoring-engine](/docs/scoring-engine-v5.7-mini.md).
+- El modelo puede violar la regla de pureza de género en la ronda 2 del flujo, **ampliando el término de busqueda sin indicarlo**. Los resultados de deben leerse con ese sesgo en mente. Ver [scoring-engine](/docs/scoring-engine-core-1.md).
 
-- Fuentes que requieren acceso manual (PDFs de revistas, FTPs privados, archivos BBS) no son accesibles por el modelo. Aparecen como pistas en `UNCONFIRMED`, no como resultados verificados.
+- Fuentes que requieren acceso manual (PDFs de revistas, FTPs privados, archivos BBS), aparecen como pistas en `UNCONFIRMED`, no como resultados verificados.
 - Los posts de redes sociales no son fuentes arqueológicas válidas aunque el modelo las incluya. Verificación manual recomendada para cualquier resultado con esa procedencia.
-- Si los encuentra, el modelo provee links de información y descargas, pero no tiene forma de validarlos como seguros. Es responsabilidad del usuario tomar los recaudos para protección contra malware. Aunque mantener el antivirus del sistema actualizado suele ser suficiente, se recomienda escanear los archivos bajados con herramientas online como [Virus Total](https://www.virustotal.com/gui/home/upload).
+- Si los encuentra, el modelo provee links de información y descargas, pero no tiene forma de validarlos como seguros. **Es responsabilidad del usuario tomar los recaudos para protección contra malware**. Aunque mantener el antivirus del sistema actualizado suele ser suficiente, se recomienda escanear los archivos bajados con herramientas online como [Virus Total](https://www.virustotal.com/gui/home/upload).
+- El filtro de plataforma, año y señales mainstream se basa exclusivamente en el fragmento de texto devuelto por el motor de búsqueda (snippet). Si el snippet no menciona la plataforma o el año, el modelo lo considera UNKNOWN y puede mantenerlo (si pasa otros filtros) o descartarlo por falta de información. Esto provoca que algunos títulos legítimos queden en UNCONFIRMED simplemente porque el snippet era pobre, aunque el título en sí sea oscuro. No hay un mecanismo de búsqueda complementaria para enriquecer esos metadatos.
+- Mayor consumo de tokens y tiempo de respuesta. En comparación con la versión Mini, CORE-1 consume más tokens de entrada (1.200‑1.600) y genera respuestas más largas (salida de 500‑1.100 tokens en casos con muchos resultados). El tiempo de respuesta promediado sobre Gemma‑4‑31b‑it oscila entre 5 y 22 segundos según el caso. Ver [lostware-benchmark](/docs/lostware-benchmark.html).
+- Consistencia variable en regiones con escritura no latina. Aunque el sistema pivota al inglés cuando falla la búsqueda local, el rendimiento en regiones como Hungría, Checoslovaquia o Turquía es menor que en España o Japón (promedio de confirmados: 1.0‑1.5 vs 4.4 en casos exitosos). Los motores de búsqueda no siempre indexan bien los caracteres acentuados o cirílicos. Es una limitación de cobertura, no del prompt en sí.
+- El Hard Gatekeeper no cubre todos los casos de parámetros inválidos. Si bien bloquea correctamente la falta de GENRE o REGION, y tiene un fallback para falta de años, no valida si el género o la región es real o si están mal escritos (por ejemplo, "Estratega" en lugar de "Estrategia"). El modelo intentará buscar igualmente, lo que puede llevar a resultados vacíos o erróneos. **Escriban bien.**
+
 
 ---
 ## Proyecto
