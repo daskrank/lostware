@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>LOSTWARE Benchmark — V5.7-mini / core / core-1.0b | Modelo: Gemma 4</title>
+<style>
+  body { font-family: monospace; font-size: 13px; margin: 20px; background: #fff; color: #000; }
+  h1 { font-size: 15px; margin-bottom: 4px; }
+  p { margin: 2px 0 12px 0; font-size: 12px; color: #555; }
+  h2 { font-size: 13px; margin: 24px 0 6px 0; border-bottom: 1px solid #000; padding-bottom: 2px; }
+  table { border-collapse: collapse; width: 100%; margin-bottom: 32px; }
+  th { background: #000; color: #fff; text-align: left; padding: 4px 8px; font-size: 12px; }
+  td { padding: 4px 8px; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f5f5; }
+  .section-label { font-weight: bold; background: #eee !important; }
+</style>
+</head>
+<body>
+
+<h1>LOSTWARE — Benchmark Comparativo</h1>
+<p>Modelo: Gemma 4 &nbsp;|&nbsp; Versiones: V5.7-mini, core, core-1.0b &nbsp;|&nbsp; n=12 runs por versión</p>
+
+<!-- ===================== METRICS ===================== -->
+<h2>MÉTRICAS AGREGADAS</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Métrica</th>
+      <th>V5.7-mini</th>
+      <th>core</th>
+      <th>core-1.0b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="section-label" colspan="4">Distribución de resultados</td></tr>
+    <tr><td>total_runs</td><td>12</td><td>12</td><td>12</td></tr>
+    <tr><td>case_b_count</td><td>7</td><td>7</td><td>9</td></tr>
+    <tr><td>case_a_count</td><td>5</td><td>4</td><td>2</td></tr>
+    <tr><td>hard_gate_count</td><td>0</td><td>1</td><td>1</td></tr>
+
+    <tr><td class="section-label" colspan="4">Gate</td></tr>
+    <tr><td>hard_gate_accuracy</td><td>8.33% (FAIL — C06 no disparó)</td><td>100%</td><td>100%</td></tr>
+
+    <tr><td class="section-label" colspan="4">Recall (por Case B)</td></tr>
+    <tr><td>avg_confirmed_per_case_b</td><td>2.43</td><td>4.43</td><td>0.89</td></tr>
+    <tr><td>avg_unconfirmed_per_case_b</td><td>1.43</td><td>1.14</td><td>1.00</td></tr>
+    <tr><td>avg_discarded_per_case_b</td><td>0.57</td><td>2.14</td><td>0.67</td></tr>
+    <tr><td>avg_total_titles_per_case_b</td><td>4.43</td><td>7.71</td><td>2.56</td></tr>
+
+    <tr><td class="section-label" colspan="4">Violaciones (0 = ninguna)</td></tr>
+    <tr><td>genre_purity_violation_rate</td><td>0.0%</td><td>0.0%</td><td>0.0%</td></tr>
+    <tr><td>platform_violation_rate</td><td>0.0%</td><td>0.0%</td><td>0.0%</td></tr>
+    <tr><td>era_violation_rate</td><td>0.0%</td><td>0.0%</td><td>0.0%</td></tr>
+    <tr><td>calibration_leak_rate</td><td>0.0%</td><td>0.0%</td><td>0.0%</td></tr>
+    <tr><td>format_break_rate</td><td>0.0%</td><td>0.0%</td><td>0.0%</td></tr>
+    <tr><td>discarded_section_compliance</td><td>100%</td><td>100%</td><td>100%</td></tr>
+
+    <tr><td class="section-label" colspan="4">Cobertura regional</td></tr>
+    <tr><td>small_region_performance (avg confirmed — C07+C08)</td><td>1.0</td><td>1.5</td><td>0.0</td></tr>
+    <tr><td>non_latin_performance (avg confirmed — C07+C08+C09)</td><td>0.67</td><td>1.0</td><td>0.0</td></tr>
+
+    <tr><td class="section-label" colspan="4">Consistencia</td></tr>
+    <tr><td>consistency_c01_c11 (JRPG/JP vs Adv/JP)</td><td>CONSISTENT</td><td>CONSISTENT</td><td>CONSISTENT</td></tr>
+    <tr><td>consistency_c01_c12 (JRPG/JP vs JRPG/ES)</td><td>INCONSISTENT</td><td>INCONSISTENT</td><td>CONSISTENT</td></tr>
+
+    <tr><td class="section-label" colspan="4">Tokens y tiempo</td></tr>
+    <tr><td>avg_tokens_input</td><td>1200</td><td>1280 (aprox)</td><td>1200</td></tr>
+    <tr><td>avg_tokens_output</td><td>217.5</td><td>596 (aprox)</td><td>285 (aprox)</td></tr>
+    <tr><td>avg_tokens_thinking</td><td>—</td><td>490 (aprox)</td><td>173 (aprox)</td></tr>
+    <tr><td>avg_tokens_total</td><td>1651</td><td>2317 (aprox)</td><td>1693 (aprox)</td></tr>
+    <tr><td>avg_response_time (seg)</td><td>9.14</td><td>~14.0</td><td>~4.9</td></tr>
+  </tbody>
+</table>
+
+<!-- ===================== RAW V5.7 ===================== -->
+<h2>RAW DATA — V5.7-mini</h2>
+<table>
+  <thead>
+    <tr>
+      <th>run_id</th><th>case_id</th><th>genre</th><th>region</th>
+      <th>case_result</th><th>confirmed</th><th>unconfirmed</th><th>discarded</th><th>total_processed</th>
+      <th>gate_fired</th><th>gate_expected</th><th>gate_correct</th>
+      <th>genre_purity_violated</th><th>platform_violation</th><th>era_violation</th>
+      <th>calibration_leak</th><th>format_break</th><th>discarded_section_present</th>
+      <th>lang_pivot</th><th>tokens_input</th><th>tokens_output</th><th>tokens_thinking</th><th>tokens_total</th><th>response_time_s</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>V5.7-C01</td><td>C01</td><td>JRPG</td><td>Japón</td><td>CASE_B</td><td>3</td><td>2</td><td>1</td><td>6</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>UNKNOWN</td><td>1200</td><td>450</td><td>300</td><td>1950</td><td>12.40</td></tr>
+    <tr><td>V5.7-C02</td><td>C02</td><td>Metroidvania</td><td>Brasil</td><td>CASE_A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>UNKNOWN</td><td>1200</td><td>25</td><td>200</td><td>1425</td><td>5.10</td></tr>
+    <tr><td>V5.7-C03</td><td>C03</td><td>Estrategia por turnos</td><td>Polonia</td><td>CASE_B</td><td>2</td><td>1</td><td>0</td><td>3</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>UNKNOWN</td><td>1200</td><td>380</td><td>250</td><td>1830</td><td>10.20</td></tr>
+    <tr><td>V5.7-C04</td><td>C04</td><td>Aventura gráfica</td><td>España</td><td>CASE_B</td><td>4</td><td>2</td><td>2</td><td>8</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>UNKNOWN</td><td>1200</td><td>520</td><td>350</td><td>2070</td><td>11.15</td></tr>
+    <tr><td>V5.7-C05</td><td>C05</td><td>Shoot em up</td><td>Corea del Sur</td><td>CASE_A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>UNKNOWN</td><td>1200</td><td>25</td><td>200</td><td>1425</td><td>8.40</td></tr>
+    <tr><td>V5.7-C06</td><td>C06</td><td>Roguelike</td><td>Internacional</td><td>CASE_B</td><td>2</td><td>1</td><td>0</td><td>3</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>UNKNOWN</td><td>1200</td><td>310</td><td>200</td><td>1710</td><td>9.20</td></tr>
+    <tr><td>V5.7-C07</td><td>C07</td><td>Aventura gráfica</td><td>Hungría</td><td>CASE_A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>UNKNOWN</td><td>1200</td><td>25</td><td>180</td><td>1405</td><td>7.60</td></tr>
+    <tr><td>V5.7-C08</td><td>C08</td><td>Estrategia</td><td>Checoslovaquia</td><td>CASE_B</td><td>1</td><td>1</td><td>0</td><td>2</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>UNKNOWN</td><td>1200</td><td>290</td><td>220</td><td>1710</td><td>10.10</td></tr>
+    <tr><td>V5.7-C09</td><td>C09</td><td>RPG</td><td>Turquía</td><td>CASE_A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>UNKNOWN</td><td>1200</td><td>25</td><td>150</td><td>1375</td><td>6.30</td></tr>
+    <tr><td>V5.7-C10</td><td>C10</td><td>Plataformas</td><td>Australia</td><td>CASE_B</td><td>2</td><td>2</td><td>1</td><td>5</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>UNKNOWN</td><td>1200</td><td>410</td><td>280</td><td>1890</td><td>9.80</td></tr>
+    <tr><td>V5.7-C11</td><td>C11</td><td>Aventura gráfica</td><td>Japón</td><td>CASE_B</td><td>3</td><td>1</td><td>1</td><td>5</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>UNKNOWN</td><td>1200</td><td>390</td><td>300</td><td>1890</td><td>11.40</td></tr>
+    <tr><td>V5.7-C12</td><td>C12</td><td>JRPG</td><td>España</td><td>CASE_A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>UNKNOWN</td><td>1200</td><td>25</td><td>180</td><td>1405</td><td>7.10</td></tr>
+  </tbody>
+</table>
+
+<!-- ===================== RAW CORE ===================== -->
+<h2>RAW DATA — core</h2>
+<table>
+  <thead>
+    <tr>
+      <th>run_id</th><th>case_id</th><th>genre</th><th>region</th>
+      <th>case_result</th><th>confirmed</th><th>unconfirmed</th><th>discarded</th><th>total_processed</th>
+      <th>gate_fired</th><th>gate_expected</th><th>gate_correct</th>
+      <th>genre_purity_violated</th><th>platform_violation</th><th>era_violation</th>
+      <th>calibration_leak</th><th>format_break</th><th>discarded_section_present</th>
+      <th>lang_pivot</th><th>tokens_input</th><th>tokens_output</th><th>tokens_thinking</th><th>tokens_total</th><th>response_time_s</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>V9-C01</td><td>C01</td><td>JRPG</td><td>Japón</td><td>CASE_B</td><td>7</td><td>0</td><td>0</td><td>7</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>1200</td><td>800</td><td>400</td><td>2400</td><td>12.45</td></tr>
+    <tr><td>V9-C02</td><td>C02</td><td>Metroidvania</td><td>Brasil</td><td>CASE_A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>NO</td><td>1100</td><td>100</td><td>300</td><td>1500</td><td>8.20</td></tr>
+    <tr><td>V9-C03</td><td>C03</td><td>Estrategia por turnos</td><td>Polonia</td><td>CASE_B</td><td>3</td><td>1</td><td>2</td><td>6</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>YES</td><td>1300</td><td>700</td><td>500</td><td>2500</td><td>15.10</td></tr>
+    <tr><td>V9-C04</td><td>C04</td><td>Aventura gráfica</td><td>España</td><td>CASE_B</td><td>8</td><td>2</td><td>4</td><td>14</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>1400</td><td>1100</td><td>600</td><td>3100</td><td>18.30</td></tr>
+    <tr><td>V9-C05</td><td>C05</td><td>Shoot em up</td><td>Corea del Sur</td><td>CASE_A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>NO</td><td>1200</td><td>100</td><td>400</td><td>1700</td><td>11.05</td></tr>
+    <tr><td>V9-C06</td><td>C06</td><td>Roguelike</td><td>Internacional</td><td>HARD_GATE</td><td>0</td><td>0</td><td>0</td><td>0</td><td>YES</td><td>YES</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>NO</td><td>1000</td><td>50</td><td>100</td><td>1150</td><td>2.10</td></tr>
+    <tr><td>V9-C07</td><td>C07</td><td>Aventura gráfica</td><td>Hungría</td><td>CASE_B</td><td>1</td><td>1</td><td>0</td><td>2</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>YES</td><td>1500</td><td>500</td><td>700</td><td>2700</td><td>20.40</td></tr>
+    <tr><td>V9-C08</td><td>C08</td><td>Estrategia</td><td>Checoslovaquia</td><td>CASE_B</td><td>2</td><td>0</td><td>1</td><td>3</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>YES</td><td>1600</td><td>600</td><td>800</td><td>3000</td><td>22.15</td></tr>
+    <tr><td>V9-C09</td><td>C09</td><td>RPG</td><td>Turquía</td><td>CASE_A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>NO</td><td>1300</td><td>100</td><td>400</td><td>1800</td><td>9.80</td></tr>
+    <tr><td>V9-C10</td><td>C10</td><td>Plataformas</td><td>Australia</td><td>CASE_B</td><td>4</td><td>2</td><td>3</td><td>9</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>1200</td><td>800</td><td>400</td><td>2400</td><td>14.20</td></tr>
+    <tr><td>V9-C11</td><td>C11</td><td>Aventura gráfica</td><td>Japón</td><td>CASE_B</td><td>6</td><td>2</td><td>5</td><td>13</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>1400</td><td>900</td><td>600</td><td>2900</td><td>17.50</td></tr>
+    <tr><td>V9-C12</td><td>C12</td><td>JRPG</td><td>España</td><td>CASE_A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>NO</td><td>1100</td><td>100</td><td>300</td><td>1500</td><td>7.40</td></tr>
+  </tbody>
+</table>
+
+<!-- ===================== RAW CORE-1.0b ===================== -->
+<h2>RAW DATA — core-1.0b</h2>
+<table>
+  <thead>
+    <tr>
+      <th>run_id</th><th>case_id</th><th>genre</th><th>region</th>
+      <th>case_result</th><th>confirmed</th><th>unconfirmed</th><th>discarded</th><th>total_processed</th>
+      <th>gate_fired</th><th>gate_expected</th><th>gate_correct</th>
+      <th>genre_purity_violated</th><th>platform_violation</th><th>era_violation</th>
+      <th>calibration_leak</th><th>format_break</th><th>discarded_section_present</th>
+      <th>lang_pivot</th><th>tokens_input</th><th>tokens_output</th><th>tokens_thinking</th><th>tokens_total</th><th>response_time_s</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>V9-C01</td><td>C01</td><td>JRPG</td><td>Japón</td><td>CASE_B</td><td>1</td><td>1</td><td>2</td><td>4</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>YES</td><td>1200</td><td>350</td><td>200</td><td>1750</td><td>5.2</td></tr>
+    <tr><td>V9-C02</td><td>C02</td><td>Metroidvania</td><td>Brasil</td><td>CASE_A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>YES</td><td>1200</td><td>60</td><td>150</td><td>1410</td><td>4.5</td></tr>
+    <tr><td>V9-C03</td><td>C03</td><td>Estrategia por turnos</td><td>Polonia</td><td>CASE_B</td><td>1</td><td>0</td><td>1</td><td>2</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>1200</td><td>350</td><td>200</td><td>1750</td><td>5.2</td></tr>
+    <tr><td>V9-C04</td><td>C04</td><td>Aventura gráfica</td><td>España</td><td>CASE_B</td><td>3</td><td>2</td><td>1</td><td>6</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>1200</td><td>450</td><td>200</td><td>1850</td><td>5.2</td></tr>
+    <tr><td>V9-C05</td><td>C05</td><td>Shoot em up</td><td>Corea del Sur</td><td>CASE_B</td><td>0</td><td>1</td><td>0</td><td>1</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>YES</td><td>1200</td><td>300</td><td>200</td><td>1700</td><td>5.2</td></tr>
+    <tr><td>V9-C06</td><td>C06</td><td>Roguelike</td><td>Internacional</td><td>HARD_GATE</td><td>0</td><td>0</td><td>0</td><td>0</td><td>YES</td><td>YES</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>NO</td><td>1200</td><td>50</td><td>20</td><td>1270</td><td>1.2</td></tr>
+    <tr><td>V9-C07</td><td>C07</td><td>Aventura gráfica</td><td>Hungría</td><td>CASE_B</td><td>0</td><td>1</td><td>0</td><td>1</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>YES</td><td>1200</td><td>300</td><td>200</td><td>1700</td><td>5.2</td></tr>
+    <tr><td>V9-C08</td><td>C08</td><td>Estrategia</td><td>Checoslovaquia</td><td>CASE_B</td><td>0</td><td>1</td><td>0</td><td>1</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>YES</td><td>1200</td><td>300</td><td>200</td><td>1700</td><td>5.2</td></tr>
+    <tr><td>V9-C09</td><td>C09</td><td>RPG</td><td>Turquía</td><td>CASE_A</td><td>0</td><td>0</td><td>0</td><td>0</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NaN</td><td>YES</td><td>1200</td><td>60</td><td>100</td><td>1360</td><td>3.8</td></tr>
+    <tr><td>V9-C10</td><td>C10</td><td>Plataformas</td><td>Australia</td><td>CASE_B</td><td>2</td><td>1</td><td>1</td><td>4</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>1200</td><td>400</td><td>200</td><td>1800</td><td>5.2</td></tr>
+    <tr><td>V9-C11</td><td>C11</td><td>Aventura gráfica</td><td>Japón</td><td>CASE_B</td><td>1</td><td>1</td><td>1</td><td>3</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>YES</td><td>1200</td><td>350</td><td>200</td><td>1750</td><td>5.2</td></tr>
+    <tr><td>V9-C12</td><td>C12</td><td>JRPG</td><td>España</td><td>CASE_B</td><td>0</td><td>1</td><td>0</td><td>1</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>NO</td><td>YES</td><td>NO</td><td>1200</td><td>300</td><td>200</td><td>1700</td><td>5.2</td></tr>
+  </tbody>
+</table>
+
+</body>
+</html>
