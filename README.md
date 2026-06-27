@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Models](https://img.shields.io/badge/models-DeepSeek%20%7C%20Qwen%20%7C%20GLM-purple.svg)](#)
 
+README [ENGLISH](/README.en.md) version
+
 **Descripción técnica:** Un conjunto de instrucciones estructuradas que guían la ejecución de herramientas de búsqueda web por parte de modelos de lenguaje (LLMs), optimizando la recuperación de información histórica de nicho mediante filtrado heurístico y auditoría de fuentes.
 
 **Descripción simple:** Prompt de arqueologia digital para encontrar videojuegos de computadora perdidos, regionales u olvidados de distintas epocas. Filtrando los titulos mainstream o ampliamente conocidos.
