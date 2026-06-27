@@ -5,6 +5,58 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [Core 1] — 2026-06-27
+
+**First Stable Release of the project**  
+Reboot of the system with a completely redesigned prompt architecture. This version replaces all previous variants (mini, S) as the new flagship model.
+
+### Added
+- **Hard Gatekeeper** with 100% accuracy: prevents hallucination by blocking incomplete queries (missing GENRE or REGION).
+- **Automatic language pivot**: if local-language search yields zero results, the system switches to English while preserving the region name – critical for regions with low web presence.
+- **Two‑stage filtering pipeline**: heuristic obscurity scoring + multi‑source verification (≥2 independent domains required for `CONFIRMED` status).
+- **Structured output with `# Discarded` section**: every filtered‑out title is reported with the exact snippet‑based reason, improving auditability.
+
+### Changed
+- Complete rewrite of the prompt architecture: from a monolithic block to a modular, rule‑based system with clear sections (`<system>`, `<constraints>`, `<rules>`, `<output_schema>`).
+- Search templates now generate queries in the **official language of the target region** (T1–T5 layers) before falling back to English.
+- Obscurity scoring now uses a **point‑based heuristic** (positive: regional magazines, BBS/FTP dumps; negative: Steam/GOG, Wikipedia, remasters) – titles below threshold go to `# Discarded` instead of being silently dropped.
+
+### Performance
+- Benchmark on Gemma‑4‑31b‑it (12 cases): **7 of 12 cases (58.3%) returned verified titles**.
+- **Average confirmed per successful case: 4.43** (vs. 0.89 in previous stable version).
+- **Average total titles processed per successful case: 7.71**.
+- **Hard gate accuracy: 100%**; format compliance: 100%.
+- Consistent results across similar cases (e.g., C01 vs C11 both yielded high recovery).
+
+### Fixed
+- Eliminated the “paralysis by analysis” issue present in earlier experimental versions (e.g., Core prototype) that caused the model to abort prematurely.
+- Fixed language‑pivot logic to actually trigger when local search yields zero candidate sources.
+- Corrected output structure to always include the `# Discarded` section (previously missing in some variants).
+
+---
+
+## [Core] — 2026-06-25
+
+**Reboot of the LOSTWARE system.**  
+This marks the beginning of the Core series, a complete redesign focused on reliability, traceability, and high‑quality recovery of obscure regional games.
+
+### Added
+- New prompt architecture with explicit **rule‑based reasoning** (replacing the earlier free‑form instruction blocks).
+- **Hard Gatekeeper** (initial implementation) to reject invalid inputs.
+- **Language‑aware search templates**: first attempt in the region's official language, with a fallback to English.
+- **Heuristic scoring system** for obscurity: titles are scored based on source type (magazines, BBS, forums) and mainstream signals (Steam, GOG, Wikipedia).
+
+### Changed
+- Separated the prompt into clear functional sections: `SYSTEM`, `CONSTRAINTS`, `RULES`, `OUTPUT_SCHEMA`.
+- Reworked the search pipeline into **5 layers** (Archive.org → regional forums → FTP/BBS → magazine scans → general web) with priority weighting.
+- Replaced the old `UNCONFIRMED`/`CONFIRMED` binary with a **three‑tier system** (CONFIRMED / UNCONFIRMED / DISCARDED), improving transparency.
+
+### Removed
+- All legacy Mini and S variants are now **deprecated** and moved to the `archive/` folder. Core is the sole actively maintained branch.
+
+
+---
+
 ## [7.5-S — Deep Research] — 2026-06-26
 
 Experimental variant. Higher token cost. Designed for reasoning models with extended thinking.
