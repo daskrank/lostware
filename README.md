@@ -62,9 +62,9 @@ El modelo hará la búsqueda de forma autónoma y devolverá el listado de los h
 
 | Variante | Perfil | Optimización | Uso |
 | :--- | :--- | :--- | :--- |
-| **Core 1** | **Stable Release** | Equilibrio entre precisión, consistencia y consumo de tokens. Hard gate robusto y pivote lingüístico automático. | Uso general, producción. |
-| **Mini v5.7** | **Ligero / Experimental** | Mayor velocidad y menor uso de tokens, pero sacrifica precisión en hard gate y consistencia. | Escaneo masivo para hallazgos rápidos con supervisión. |
-| **S (Deep Research)** | **Alta precisión** | Validación granular y mayor consumo de tokens. Experimental. | Reportes investigativos profundos. |
+| **Core 1** | **Stable Release** | Equilibrio entre precisión, consistencia y consumo de tokens. | Uso general.
+| **Mini v5.7** | **Ligero / Experimental** | Mayor velocidad y menor uso de tokens, pero sacrifica precisión. | Escaneo masivo para hallazgos rápidos con impresiciones. |
+| **S (Deep Research)** | **Alta precisión** | Validación granular, mas lento y mayor consumo de tokens. Experimental. | Reportes investigativos profundos. |
 
 ---
 
@@ -78,19 +78,19 @@ lostware/
 ├── CHANGELOG.md
 │
 ├── prompts/
-│ ├── lostware-core-1.md               ← versión oficial
-│ └── archive/
-│   ├── lostware-core.md
-│   ├── lostware-v5.8-mini.md
-│   ├── lostware-v6.2.md
-│   ├── lostware-v7.5-mini.md
-│   └── lostware-v7.5-S-deep-research.md   ← experimental
+│     ├── lostware-core-1.md       ←--- versión oficial
+│     └── archive/
+│          ├── lostware-core.md
+│          ├── lostware-v5.8-mini.md
+│          ├── lostware-v6.2.md
+│          ├── lostware-v7.5-mini.md
+│          └── lostware-v7.5-S-deep-research.md
 │
 ├── tests/
-│ ├── results-core-1.html
-│ └── results-v5.7-mini.html
+│     ├── results-core-1.html
+│     └── results-v5.7-mini.html
 └── docs/
-└── scoring-engine.md
+      └── scoring-engine.md
 
 ```
 ---
